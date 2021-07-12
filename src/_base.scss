@@ -24,4 +24,13 @@ body{
 }
 
 
+@mixin line-clamp($number) {
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: $number;
+   -webkit-box-orient: vertical;
+}
 
+::-webkit-scrollbar {
+   width: 0px;
+}

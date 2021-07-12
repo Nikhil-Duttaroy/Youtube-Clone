@@ -7,7 +7,7 @@ const Homepage = () => {
   return (
       <Container>
         <CategoryBar/>
-        <Row>
+        <Row >
        {[...new Array(10)].map(() => (
             <Col lg={3} md={4}>
                 <Video/>

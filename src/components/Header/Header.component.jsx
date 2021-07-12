@@ -26,8 +26,8 @@ const Header = ({ handleSidebarToggle }) => {
       </form>
 
       <div className='header_icons'>
-        <MdNotifications size={27} />
         <MdApps size={27} />
+        <MdNotifications size={27} />
         <img
           src='https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png'
           alt='avatar'
