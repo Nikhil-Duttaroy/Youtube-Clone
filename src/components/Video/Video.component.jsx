@@ -18,7 +18,7 @@ const Video= () => {
         </div>
         <div className='video_details'>
           <span>
-            <AiFillEye /> 5m Views •
+            <AiFillEye /> 1m Views •
           </span>
           <span>2 years ago</span>
         </div>

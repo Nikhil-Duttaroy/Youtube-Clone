@@ -7,6 +7,7 @@ import Sidebar from "./components/Sidebar/Sidebar.component";
 import Homepage from "./pages/HomePage/HomePage.component";
 //bootstrap imports
 import { Container } from "react-bootstrap";
+import LoginPage from './pages/LoginPage/LoginPage.component';
 
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -15,13 +16,17 @@ const App = () => {
 
   return (
     <>
-      <Header handleSidebarToggle={handleSidebarToggle} />
+      {/* <Header handleSidebarToggle={handleSidebarToggle} />
+      
       <div className='app_container '>
         <Sidebar sidebar={sidebar} handleSidebarToggle={handleSidebarToggle} />
         <Container fluid className='app_main'>
           <Homepage />
         </Container>
-      </div>
+      </div> */}
+
+      <LoginPage/>
+    
     </>
   );
 };

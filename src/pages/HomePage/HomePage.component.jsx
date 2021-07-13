@@ -8,7 +8,7 @@ const Homepage = () => {
       <Container>
         <CategoryBar/>
         <Row >
-       {[...new Array(10)].map(() => (
+       {[...new Array(20)].map(() => (
             <Col lg={3} md={4}>
                 <Video/>
             </Col>

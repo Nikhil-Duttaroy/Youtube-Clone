@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from "react";
 import "./CategoryBar.styles.scss"
-import { useState } from 'react';
 
 const category = [
    'All',

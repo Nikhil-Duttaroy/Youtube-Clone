@@ -11,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 3rem;
-
+  z-index: 999;
   &_menu {
     display: none;
   }
@@ -27,7 +27,7 @@
     display: flex;
     align-self: center;
     margin: 0 1rem;
-    padding: 0.2rem;
+    padding: 0.3rem;
     border: 1.1px solid;
     border-radius: 3px;
     background-color: $black-secondary;
