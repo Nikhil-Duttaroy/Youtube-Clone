@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch,useSelector } from 'react-redux'
 import "./LoginPage.styles.scss"
+import { login } from './../../redux/actions/auth.action';
+import { useHistory } from 'react-router-dom';
 
 const LoginPage= () => {
+ const dispatch = useDispatch()
+ const accessToken = useSelector(state=>state.auth.accessToken)
+ const history=useHistory()
+ 
+ const handleLogin = ()=>{
+    dispatch(login())
+ }
+
+useEffect(()=>{
+  if (accessToken){
+    history.push('/')
+  }
+},[accessToken,history])
+
     return (
       <div className='login'>
         <div className='login_container'>
@@ -10,7 +27,7 @@ const LoginPage= () => {
             src='http://pngimg.com/uploads/youtube/youtube_PNG2.png'
             alt=''
           />
-          <button>Login With Google</button>
+          <button onClick={handleLogin}>Login With Google</button>
           <p>Youtube Clone made using ReactJS , Redux , Firebase and the youtube API</p>
         </div>
       </div>
