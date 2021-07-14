@@ -12,7 +12,7 @@ import {
 } from "react-icons/md";
 
 import { useDispatch } from 'react-redux';
-import { log_out } from "../../redux/actions/auth.action";
+import { log_out } from "../../redux/auth/auth.action";
 
 const Sidebar = ({ sidebar, handleSidebarToggle }) => {
   const dispatch = useDispatch();
