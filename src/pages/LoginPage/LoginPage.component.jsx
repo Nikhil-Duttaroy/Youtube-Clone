@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import "./LoginPage.styles.scss"
-import { login } from './../../redux/actions/auth.action';
+import { login } from './../../redux/auth/auth.action';
 import { useHistory } from 'react-router-dom';
+
 
 const LoginPage= () => {
  const dispatch = useDispatch()
