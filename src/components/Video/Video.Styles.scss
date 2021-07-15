@@ -6,16 +6,21 @@
 
    font-weight: 500;
    font-size: 0.9rem;
-
+   // border:0.1px solid white;
    cursor: pointer;
 
    &_top {
       margin-bottom: 0.5rem;
       position: relative;
+
+      .lazy-load-image-background{
+         width: 100%;
+      }
+
       img {
          width: 100%;
       }
-      span {
+      &_duration {
          position: absolute;
 
          bottom: 0.3rem;

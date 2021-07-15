@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./CategoryBar.styles.scss"
 
+import {useDispatch} from "react-redux";
+import { getVideosByCategory , getPopularVideos } from './../../redux/videos/videos.actions'
+
 const category = [
    'All',
    'HTML',
@@ -24,9 +27,18 @@ const category = [
 const CategoryBar = () => {
   const [activeElement, setActiveElement] = useState("All");
 
-  const handleClick = (value) => {
-    setActiveElement(value);
-  };
+  const dispatch =useDispatch()
+
+   const handleClick = value => {
+      setActiveElement(value)
+      if (value === 'All') {
+         dispatch(getPopularVideos())
+      } else {
+         dispatch(getVideosByCategory(value))
+      }
+   }
+
+
 
   return ( 
     <div className='category_bar'>

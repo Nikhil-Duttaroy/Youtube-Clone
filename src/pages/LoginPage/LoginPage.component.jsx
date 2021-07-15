@@ -14,11 +14,11 @@ const LoginPage= () => {
     dispatch(login())
  }
 
-useEffect(()=>{
-  if (accessToken){
-    history.push('/')
+useEffect(() => {
+  if (accessToken) {
+    history.push("/");
   }
-},[accessToken,history])
+}, [accessToken, history]);
 
     return (
       <div className='login'>
