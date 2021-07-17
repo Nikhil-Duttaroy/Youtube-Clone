@@ -1,0 +1,26 @@
+.comments_form{
+    img{
+        object-fit: contain;
+    }
+    input{
+        border:none;
+        border-bottom: 2px solid gray;
+        background-color: transparent;
+        color: #fff;
+        &:focus{
+            outline: none;
+        }
+    }
+    button{
+        background-color: rgb(52, 52, 212);
+        color: #fff;
+        letter-spacing: 0.5px;
+        &:focus{
+            outline: none;
+            border: none;
+        }
+        &:hover{
+            background-color:rgb(38, 38, 211);
+        }
+    }
+}
