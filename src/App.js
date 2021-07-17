@@ -12,6 +12,7 @@ import LoginPage from './pages/LoginPage/LoginPage.component';
 //react router imports
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
+import WatchPage from './pages/WatchPage/WatchPage.component';
 
 //creating layout as the header sidebar and category bar are common for multiple pages
 const Layout = ({children}) => {
@@ -55,6 +56,12 @@ const App = () => {
         <Route exact path='/search'>
           <Layout>
             <h1>Search Page</h1>
+          </Layout>
+        </Route>
+
+        <Route exact path='/watch/:id'>
+          <Layout>
+            <WatchPage/>
           </Layout>
         </Route>
 
