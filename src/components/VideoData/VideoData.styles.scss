@@ -20,6 +20,11 @@
             letter-spacing: 1px;
             background-color: #cc0000;
             font-weight: bolder;
+            
+            &.btn-gray{
+                background-color: gray;
+                font-weight: lighter;
+            }
             &:hover{
                 color: white;
             }

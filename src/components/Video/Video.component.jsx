@@ -5,6 +5,7 @@ import request from "./../../api";
 import moment from "moment";
 import numeral from 'numeral'
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useHistory } from 'react-router-dom';
 
 const Video = ({ video }) => {
   const {
@@ -27,6 +28,7 @@ const Video = ({ video }) => {
 
   const _videoId = id?.videoId || id;
 
+  const history=useHistory();
 //doing another request again beacuse the search end point doent have some data required by the componenet
   useEffect(() => {
     const get_video_details = async () => {
@@ -59,8 +61,12 @@ const Video = ({ video }) => {
     get_channel_icon();
   }, [channelId]);
 
+  const handleVideo =  () => {
+    history.push(`/watch/${_videoId}`)
+  }
+
   return (
-    <div className='video'>
+    <div className='video' onClick={handleVideo}>
       <div className='video_top'>
         {/* <img src={medium.url} alt='' />
          */}

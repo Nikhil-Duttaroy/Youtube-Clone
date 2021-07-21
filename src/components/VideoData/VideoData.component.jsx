@@ -4,56 +4,86 @@ import moment from 'moment';
 import numeral from "numeral";
 import { MdThumbUp, MdThumbDown } from 'react-icons/md'
 import ShowMoreText from 'react-show-more-text'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkSubscriptionStatus, getChannelDetails } from './../../redux/channel/channel.action';
 
-const VideoData = () => {
-    return (
-      <div className='video_data py-2'>
-        <div className='video_data_top'>
-          <h5>Title</h5>
-          <div className='d-flex justify-content-between align-items-center py-1'>
-            <span>
-              {numeral(100000).format("0.a")} Views •
-              {moment(2020 - 15 - 9).fromNow()}
+const VideoData = ({
+  video: {
+    snippet: { channelId, channelTitle, description, title, publishedAt },
+    statistics: { viewCount, likeCount, dislikeCount },
+  },
+  videoId,
+}) => {
+  //getting some details again because i could not find it  in yt api 
+   const { snippet: channelSnippet, statistics: channelStatistics } = useSelector(
+   (state) => state.channelDetails.channel
+ );
+    const subscriptionStatus  = useSelector(
+      (state) => state.channelDetails.subscriptionStatus
+    );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getChannelDetails(channelId));
+    dispatch(checkSubscriptionStatus(channelId));
+  }, [dispatch, channelId]);
+
+  return (
+    <div className='video_data py-2'>
+      <div className='video_data_top'>
+        <h5>{title}</h5>
+        <div className='d-flex justify-content-between align-items-center py-1'>
+          <span>
+            {numeral(viewCount).format("0.a")} Views •{" "}
+            {moment(publishedAt).fromNow()}
+          </span>
+
+          <div>
+            <span className='mr-3'>
+              <MdThumbUp size={26} /> {numeral(likeCount).format("0.a")}
             </span>
-
-            <div>
-              <span className='mr-3'>
-                <MdThumbUp size={26} /> {numeral(100000).format("0.a")}
-              </span>
-              <span className='mr-3'>
-                <MdThumbDown size={26} /> {numeral(100).format("0.a")}
-              </span>
-            </div>
+            <span className='mr-3'>
+              <MdThumbDown size={26} /> {numeral(dislikeCount).format("0.a")}
+            </span>
           </div>
-        </div>
-        <div className='video_data_channel d-flex justify-content-between align-items-center py-3 my-2 align-items-lg-center'>
-          <div className='d-flex'>
-            <img
-              className='rounded-circle mr-3'
-              src='https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png'
-              alt=''
-            />
-            <div className='d-flex flex-column'>
-              <span>Channel Name</span>
-              <span>{numeral(100000).format("0.a")} Subscribers</span>
-            </div>
-          </div>
-              <button className='btn border-0 p-2 m-2'>Subscribe</button>
-        </div>
-        <div className='video_data_description'>
-            <ShowMoreText
-               lines={3}
-               more='SHOW MORE'
-               less='SHOW LESS'
-               anchorClass='showMoreText'
-               expanded={false}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-          </ShowMoreText>
-          
-
         </div>
       </div>
-    );
-}
+      <div className='video_data_channel d-flex justify-content-between align-items-center py-3 my-2 align-items-lg-center'>
+        <div className='d-flex'>
+          <img
+            className='rounded-circle mr-3'
+            src={channelSnippet?.thumbnails?.default?.url}
+            alt={channelTitle}
+          />
+          <div className='d-flex flex-column'>
+            <span>{channelTitle}</span>
+            <span>
+              {numeral(channelStatistics?.subscriberCount).format("0.a")}{" "}
+              Subscribers
+            </span>
+          </div>
+        </div>
+        <button
+          className={`p-2 m-2 border-0 btn ${subscriptionStatus && "btn-gray"}`}
+        >
+          {subscriptionStatus ? "Subscribed" : "Subscribe"}
+        </button>
+      </div>
+      <div className='video_data_description'>
+        <ShowMoreText
+          lines={3}
+          more='SHOW MORE'
+          less='SHOW LESS'
+          anchorClass='showMoreText'
+          expanded={false}
+        >
+          {description}
+        </ShowMoreText>
+      </div>
+    </div>
+  );
+};
 
 export default VideoData
