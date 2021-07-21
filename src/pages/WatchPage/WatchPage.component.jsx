@@ -4,27 +4,50 @@ import "./WatchPage.styles.scss"
 import VideoData from './../../components/VideoData/VideoData.component';
 import Comments from './../../components/Comments/Comments.component';
 import VideoSide from './../../components/VideoSide/VideoSide.component';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getVideoById } from './../../redux/videos/videos.actions';
 
 const WatchPage = () => {
+  const dispatch = useDispatch()
+  const {video ,loading} =useSelector(state=>state.selectedVideo)
+  const {id}= useParams();
+
+  useEffect(() => {
+    dispatch(getVideoById(id))
+    
+  }, [dispatch,id]);
+
+
     return (
       <Row>
         <Col lg={8}>
           <div className='watch_player'>
             <iframe
-              title="video"
-              src='https://www.youtube.com/embed/tgbNymZ7vqY'
+              title={video?.snippet?.title}
+              src={`https://www.youtube.com/embed/${id}`}
               frameBorder='0'
               allowFullScreen
               width='100%'
               height='100%'
             ></iframe>
           </div>
-          <VideoData/>
-          <Comments/>
+
+          {!loading ? (
+            <VideoData video={video} videoId={id} />
+          ) : (
+            <h1>Loading</h1>
+          )}
+          <Comments
+            videoId={id}
+            totalComments={video?.statistics?.commentCount}
+          />
         </Col>
         <Col lg={4}>
-       { [...Array(10)].map(() => <VideoSide/>)}
-
+          {[...Array(10)].map(() => (
+            <VideoSide />
+          ))}
         </Col>
       </Row>
     );

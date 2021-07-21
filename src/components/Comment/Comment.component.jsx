@@ -2,20 +2,26 @@ import moment from 'moment';
 import "./Comment.styles.scss"
 import React from 'react'
 
-const Comment = () => {
+const Comment = ({ comment }) => {
+  const {
+      authorDisplayName,
+      authorProfileImageUrl,
+      publishedAt,
+      textDisplay,
+   } = comment
     return (
       <div className='comment p-2 d-lg-flex'>
         <img
-          src='https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png'
+          src={authorProfileImageUrl}
           alt=''
-          className='rounder-circle mr-3'
+          className='rounded-circle mr-3'
           height='50px'
         />
         <div className='comment_body'>
           <p className='comment_body_header mb-2'>
-            Nikhil •<span>{moment("2020-05-03").fromNow()}</span>
+            {authorDisplayName} • {moment(publishedAt).fromNow()}
           </p>
-          <p className="comment_body_content mb-2"> Hellow Hi Hello Hi</p>
+          <p className="comment_body_content mb-2">{textDisplay}</p>
         </div>
       </div>
     );
