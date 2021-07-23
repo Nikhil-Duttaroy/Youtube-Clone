@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { authReducer } from './auth/auth.reducer';
-import { selectedVideoReducer, videosReducer } from './videos/videos.reducer';
+import { selectedVideoReducer, videosReducer, relatedVideoReducer } from './videos/videos.reducer';
 import { channelDetailsReducer } from './channel/channel.reducers';
 import { commentsListReducer } from './comments/comments.reducer';
 
@@ -10,6 +10,7 @@ const RootReducer = combineReducers({
   selectedVideo: selectedVideoReducer,
   channelDetails: channelDetailsReducer,
   commentsList: commentsListReducer,
+  relatedVideos: relatedVideoReducer,
 });
 
 export default RootReducer

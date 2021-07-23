@@ -7,15 +7,22 @@ import VideoSide from './../../components/VideoSide/VideoSide.component';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getVideoById } from './../../redux/videos/videos.actions';
+import {
+  getVideoById,
+  getRelatedVideos,
+} from "./../../redux/videos/videos.actions";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+
 
 const WatchPage = () => {
   const dispatch = useDispatch()
   const {video ,loading} =useSelector(state=>state.selectedVideo)
+  const {videos ,loading:videoLoading} =useSelector(state=>state.relatedVideos)
   const {id}= useParams();
 
   useEffect(() => {
     dispatch(getVideoById(id))
+    dispatch(getRelatedVideos(id));
     
   }, [dispatch,id]);
 
@@ -45,9 +52,17 @@ const WatchPage = () => {
           />
         </Col>
         <Col lg={4}>
-          {[...Array(10)].map(() => (
-            <VideoSide />
-          ))}
+          {!loading ? (
+            videos
+              ?.filter((video) => video.snippet)
+              .map((video) => (
+                <VideoSide video={video} key={video.id.videoId} />
+              ))
+          ) : (
+            <SkeletonTheme color='#343a40' highlightColor='#3c4147'>
+              <Skeleton width='100%' height='130px' count={15} />
+            </SkeletonTheme>
+          )}
         </Col>
       </Row>
     );
