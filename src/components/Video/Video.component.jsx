@@ -7,7 +7,7 @@ import numeral from 'numeral'
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useHistory } from 'react-router-dom';
 
-const Video = ({ video }) => {
+const Video = ({ video ,channelScreen}) => {
   const {
     id,
     snippet: {
@@ -17,6 +17,7 @@ const Video = ({ video }) => {
       publishedAt,
       thumbnails: { medium },
     },
+    contentDetails,
   } = video;
 
   const [views, setViews] = useState(null);
@@ -26,7 +27,7 @@ const Video = ({ video }) => {
   const seconds = moment.duration(duration).asSeconds();
   const formattedDuration = moment.utc(seconds * 1000).format("mm:ss");
 
-  const _videoId = id?.videoId || id;
+  const _videoId = id?.videoId || contentDetails?.videoId || id;
 
   const history=useHistory();
 //doing another request again beacuse the search end point doent have some data required by the componenet
@@ -80,11 +81,13 @@ const Video = ({ video }) => {
         </span>
         <span>{moment(publishedAt).fromNow()}</span>
       </div>
+      {!channelScreen &&
       <div className='video_channel'>
         {/* <img src={channelIcon?.url} alt='' /> */}
         <LazyLoadImage src={channelIcon?.url} effect='blur' />
         <p>{channelTitle}</p>
       </div>
+      }
     </div>
   );
 };

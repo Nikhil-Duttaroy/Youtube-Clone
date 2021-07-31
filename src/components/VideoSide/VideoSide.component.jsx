@@ -8,8 +8,9 @@ import moment from "moment";
 import numeral from "numeral";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useHistory } from "react-router-dom";
+// import SearchPage from './../../pages/SearchPage/SearchPage.component';
 
-const VideoSide = ({video}) => {
+const VideoSide = ({ video, SearchPage, subscriberScreen }) => {
   const {
     id,
     snippet: {
@@ -18,16 +19,19 @@ const VideoSide = ({video}) => {
       description,
       title,
       publishedAt,
-      thumbnails: { medium },
+      thumbnails: { high },
+      resourceId
     },
   } = video;
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
   const [channelIcon, setChannelIcon] = useState(null);
 
-  
   const seconds = moment.duration(duration).asSeconds();
   const formattedDuration = moment.utc(seconds * 1000).format("mm:ss");
+
+  const isVideo = !(id.kind === "youtube#channel" || subscriberScreen);
+  const thumbnail = !isVideo && "videoSide_thumbnail-channel";
 
   useEffect(() => {
     const get_video_details = async () => {
@@ -42,8 +46,8 @@ const VideoSide = ({video}) => {
       setViews(items[0].statistics.viewCount);
       setDuration(items[0].contentDetails.duration);
     };
-    get_video_details();
-  }, [id]);
+    if(isVideo) get_video_details();
+  }, [id,isVideo]);
 
   useEffect(() => {
     const get_channel_icon = async () => {
@@ -60,40 +64,61 @@ const VideoSide = ({video}) => {
     get_channel_icon();
   }, [channelId]);
 
-const history = useHistory();
-const handleClick = () => {
-  history.push(`/watch/${id.videoId}`);
-};
-
-
+  const history = useHistory();
+  const _channelId = resourceId?.channelId || channelId
+  const handleClick = () => {
+    isVideo
+      ? history.push(`/watch/${id.videoId}`)
+      : history.push(`/channel/${_channelId}`);
+  };
 
   return (
     <Row
       className='videoSide m-1 py-2 align-items-center'
       onClick={handleClick}
     >
-      <Col xs={6} md={6} className='videoSide_left'>
+      <Col
+        xs={6}
+        md={SearchPage || subscriberScreen ? 4 : 6}
+        className='videoSide_left'
+      >
         <LazyLoadImage
-          className=' videoSide_thumbnail'
-          src={medium.url}
+          className={`videoSide_thumbnail ${thumbnail} `}
+          src={high.url}
           effect='blur'
           wrapperClassName='video_thumbnail-wrapper'
         />
-        <span className='video_top_duration'>{formattedDuration}</span>
+
+        {isVideo && (
+          <span className='video_top_duration'>{formattedDuration}</span>
+        )}
       </Col>
-      <Col xs={6} md={6} className='videoSide_right p-0'>
+      <Col
+        xs={6}
+        md={SearchPage || subscriberScreen ? 8 : 6}
+        className='videoSide_right p-0'
+      >
         <p className='videoSide_title mb-1'>{title}</p>
-        <div className='videoSide_details'>
-          <AiFillEye /> {numeral(views).format("0.a")} Views•{moment(publishedAt).fromNow()}
+
+        {isVideo && (
+          <div className='videoSide_details'>
+            <AiFillEye /> {numeral(views).format("0.a")} Views•
+            {moment(publishedAt).fromNow()}
+          </div>
+        )}
+
+        {(SearchPage || subscriberScreen) && (
+          <p className='mt-1 videoSide_description'>{description}</p>
+        )}
+
+        <div className='videoSide_channel d-flex align-items-center my-1'>
+          {isVideo && <LazyLoadImage src={channelIcon?.url} effect='blur' />}
+          <p className='mb-0'>{channelTitle}</p>
         </div>
-        <div className='videoSlide_channel d-flex align-items-center my-1'>
-          {/* <LazyLoadImage
-      
-            src='https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png'
-            effect='blur'
-          /> */}
-          <p className="mb-0">{channelTitle}</p>
-        </div>
+        {
+         subscriberScreen &&
+          <p className="mt-2">{video.contentDetails.totalItemCount} Videos</p>
+        }
       </Col>
     </Row>
   );

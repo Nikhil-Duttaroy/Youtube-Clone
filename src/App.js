@@ -13,6 +13,9 @@ import LoginPage from './pages/LoginPage/LoginPage.component';
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import WatchPage from './pages/WatchPage/WatchPage.component';
+import SearchPage from "./pages/SearchPage/SearchPage.component";
+import SubscribtionPage from './pages/SubscribtionPage/SubscribtionPage.component';
+import ChannelPage from './pages/ChannelPage/ChannelPage.component';
 
 //creating layout as the header sidebar and category bar are common for multiple pages
 const Layout = ({children}) => {
@@ -53,19 +56,30 @@ const App = () => {
           <LoginPage />
         </Route>
 
-        <Route exact path='/search'>
+        <Route exact path='/search/:query'>
           <Layout>
-            <h1>Search Page</h1>
+            <SearchPage />
           </Layout>
         </Route>
 
         <Route exact path='/watch/:id'>
           <Layout>
-            <WatchPage/>
+            <WatchPage />
+          </Layout>
+        </Route>
+        <Route exact path='/feed/subscriptions'>
+          <Layout>
+            <SubscribtionPage />
           </Layout>
         </Route>
 
-      {/* Default Route */}
+        <Route exact path='/channel/:channelId'>
+          <Layout>
+            <ChannelPage />
+          </Layout>
+        </Route>
+
+        {/* Default Route */}
         <Route>
           <Redirect to='/' />
         </Route>

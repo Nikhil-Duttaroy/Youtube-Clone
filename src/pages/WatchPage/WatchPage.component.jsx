@@ -17,7 +17,9 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 const WatchPage = () => {
   const dispatch = useDispatch()
   const {video ,loading} =useSelector(state=>state.selectedVideo)
-  const {videos ,loading:videoLoading} =useSelector(state=>state.relatedVideos)
+  const { videos, loading: relatedVideosLoading } = useSelector(
+    (state) => state.relatedVideos
+  );
   const {id}= useParams();
 
   useEffect(() => {

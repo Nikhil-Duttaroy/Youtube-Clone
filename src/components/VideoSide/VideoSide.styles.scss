@@ -11,6 +11,10 @@
 
    &_thumbnail {
       width: 100%;
+      &-channel{
+         width: 50%;
+         border-radius:50%
+      }
 
       &-wrapper {
          width: 100%;
@@ -40,6 +44,9 @@
       letter-spacing: 0.3px;
 
       @include line-clamp(2);
+   }
+   &_description{
+      @include line-clamp(3);
    }
 
    &_channel {
@@ -76,9 +83,9 @@
          }
       }
 
-      //   &_desc {
-      //      display: none;
-      //   }
+        &_description {
+           display: none;
+        }
 
       &_title {
          font-size: 1rem;
