@@ -2,7 +2,7 @@ import firebase from "firebase/app"
 import "firebase/auth"
 
 var firebaseConfig = {
-  apiKey: "AIzaSyDjztJpHxymTsm8BA74jCUG_CpaEV0vF68",
+  apiKey: "AIzaSyD0tTxvbx-UhZ61t2e6gyFvCWfdZtM9C3E",
   authDomain: "reactytclone.firebaseapp.com",
   projectId: "reactytclone",
   storageBucket: "reactytclone.appspot.com",
