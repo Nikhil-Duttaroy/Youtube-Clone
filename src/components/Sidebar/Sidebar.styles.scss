@@ -13,6 +13,14 @@
    height: 90vh;
    padding-top: 2rem;
    transition: transform 0.2s ease-in;
+
+   a{
+      color: $text-color;
+      &:hover{
+         color: $text-color;
+         text-decoration: none;
+      }
+   }
    li {
       display: flex;
       align-items: center;

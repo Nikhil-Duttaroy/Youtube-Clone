@@ -24,36 +24,47 @@ const Sidebar = ({ sidebar, handleSidebarToggle }) => {
       className={sidebar ? "sidebar open" : "sidebar"}
       onClick={() => handleSidebarToggle(false)}
     >
-      <li>
-        <MdHome size={23} />
-        <span>Home</span>
-      </li>
-
-      <Link to="/feed/subscriptions">
-      <li>
-        <MdSubscriptions size={23} />
-        <span>Subscriptions</span>
-      </li>
+      <Link to='/'>
+        <li>
+          <MdHome size={23} />
+          <span>Home</span>
+        </li>
       </Link>
 
-      <li>
-        <MdThumbUp size={23} />
-        <span>Liked Video</span>
-      </li>
+      <Link to='/feed/subscriptions'>
+        <li>
+          <MdSubscriptions size={23} />
+          <span>Subscriptions</span>
+        </li>
+      </Link>
 
-      <li>
-        <MdHistory size={23} />
-        <span>History</span>
-      </li>
+      {/* <Link to='/feed/subscriptions'> */}
+        <li>
+          <MdThumbUp size={23} />
+          <span>Liked Video</span>
+        </li>
+      {/* </Link> */}
 
-      <li>
-        <MdLibraryBooks size={23} />
-        <span>Library</span>
-      </li>
-      <li>
-        <MdSentimentDissatisfied size={23} />
-        <span>I don't Know</span>
-      </li>
+      {/* <Link to='/feed/subscriptions'> */}
+        <li>
+          <MdHistory size={23} />
+          <span>History</span>
+        </li>
+      {/* </Link> */}
+
+      {/* <Link to='/feed/subscriptions'> */}
+        <li>
+          <MdLibraryBooks size={23} />
+          <span>Library</span>
+        </li>
+      {/* </Link> */}
+
+      {/* <Link to='/feed/subscriptions'> */}
+        <li>
+          <MdSentimentDissatisfied size={23} />
+          <span>I don't Know</span>
+        </li>
+      {/* </Link> */}
 
       <hr />
 
