@@ -27,10 +27,9 @@ const WatchPage = () => {
     dispatch(getRelatedVideos(id));
     
   }, [dispatch,id]);
-
-
     return (
       <Row>
+        
         <Col lg={8}>
           <div className='watch_player'>
             <iframe

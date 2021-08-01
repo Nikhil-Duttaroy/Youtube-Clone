@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import Skeleton,{ SkeletonTheme } from 'react-loading-skeleton';
 import VideoSide from './../../components/VideoSide/VideoSide.component';
+import HelmetComponent from './../../components/Helmet';
 
 const SubscribtionPage = () => {
     const dispatch = useDispatch();
@@ -22,6 +23,11 @@ const SubscribtionPage = () => {
 
     return (
       <Container fluid>
+        <HelmetComponent
+          title='Your Subscriptions'
+          description='Your Subscriptions'
+        />
+
         {!loading ? (
           videos?.map((video) => (
             <VideoSide video={video} key={video.id} subscriberScreen />

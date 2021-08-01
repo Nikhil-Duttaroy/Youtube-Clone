@@ -31,13 +31,14 @@ const Comments = ({ videoId,totalComments }) => {
 
     setCommentInput("");
   };
+  const { photoURL } = useSelector((state) => state.auth?.user);
   return (
     <div>
       <div className='comments'>
         <p>{totalComments} Comments</p>
         <div className='comments_form d-flex w-100 my-2'>
           <img
-            src='https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png'
+            src={photoURL}
             alt=''
             className='rounder-circle mr-3'
             height='50px'

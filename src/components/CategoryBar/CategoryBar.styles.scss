@@ -12,13 +12,15 @@
    span {
       margin-right: 1rem;
       padding: 0.5rem;
-
+      cursor: pointer;
       white-space: nowrap;
       border: 1.5px solid $text-color;
       border-radius: 999px;
 
+
       &:hover {
          background-color: #374a59;
+      
       }
 
       &.active {

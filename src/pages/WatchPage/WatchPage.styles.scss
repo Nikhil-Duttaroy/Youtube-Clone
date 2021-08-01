@@ -8,3 +8,9 @@
     margin-bottom: 1.5rem;
 
 }
+
+@media (max-width: $breakpoint-small) {
+   .watchScreen_player {
+      height: 35vh;
+   }
+}

@@ -8,6 +8,7 @@ import { getPopularVideos ,getVideosByCategory } from './../../redux/videos/vide
 
 import  InfiniteScroll from 'react-infinite-scroll-component'
 import SkeletonVideo from './../../components/skeleton/SkeletonVideo.component';
+import HelmetComponent from './../../components/Helmet';
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const Homepage = () => {
 
   return (
     <Container>
+      <HelmetComponent title="Youtube Clone" description="Youtube Clone Home"/>
       <CategoryBar />
       <InfiniteScroll
         dataLength={videos.length}

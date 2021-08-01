@@ -7,6 +7,7 @@ import ShowMoreText from 'react-show-more-text'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkSubscriptionStatus, getChannelDetails } from './../../redux/channel/channel.action';
+import HelmetComponent from '../Helmet';
 
 const VideoData = ({
   video: {
@@ -32,6 +33,7 @@ const VideoData = ({
 
   return (
     <div className='video_data py-2'>
+      <HelmetComponent title={title} description={description}/>
       <div className='video_data_top'>
         <h5>{title}</h5>
         <div className='d-flex justify-content-between align-items-center py-1'>

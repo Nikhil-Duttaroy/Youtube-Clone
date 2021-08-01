@@ -8,6 +8,7 @@ import  numeral  from 'numeral';
 import { Col, Container, Row } from "react-bootstrap";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import Video from './../../components/Video/Video.component';
+import HelmetComponent from './../../components/Helmet';
 
 const ChannelPage = () => {
     const { channelId } = useParams();
@@ -28,6 +29,8 @@ const ChannelPage = () => {
 
     return (
       <>
+        <HelmetComponent title={snippet?.title} description={snippet?.title} />
+
         <div className='px-5 py-2 my-2 d-flex justify-content-between align-items-center channelHeader'>
           <div className='d-flex align-items-center'>
             <img src={snippet?.thumbnails?.default?.url} alt='' />
