@@ -17,7 +17,17 @@ const Header = ({ handleSidebarToggle }) => {
     history.push(`/search/${searchInput}`);
 
   } 
-  const {photoURL}= useSelector(state=>state.auth?.user)
+  let avatarURL =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthZcF6C12-eMC0JrJdv4CWO40-emM4BBFlw&usqp=CAU";
+  const photoURL= useSelector(state=>state.auth?.user)
+  const defaultPic="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthZcF6C12-eMC0JrJdv4CWO40-emM4BBFlw&usqp=CAU"
+  if(photoURL === null) 
+    {
+      avatarURL=defaultPic
+    }
+  else{
+      avatarURL=photoURL
+    }
   return (
     <>
       <div className='header'>
@@ -46,7 +56,7 @@ const Header = ({ handleSidebarToggle }) => {
         <div className='header_icons'>
           <MdApps size={27} />
           <MdNotifications size={27} />
-          <img src={photoURL} alt='avatar' />
+          <img src={avatarURL} alt='avatar' />
         </div>
       </div>
       <hr style={{ backgroundColor: "white", margin: "0px" }} />
