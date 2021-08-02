@@ -1,7 +1,7 @@
 import firebase from "firebase/app"
 import "firebase/auth"
 
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyD0tTxvbx-UhZ61t2e6gyFvCWfdZtM9C3E",
   authDomain: "reactytclone.firebaseapp.com",
   projectId: "reactytclone",

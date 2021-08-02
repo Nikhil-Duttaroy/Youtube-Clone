@@ -49,7 +49,7 @@ export const checkSubscriptionStatus = (id) => async (dispatch, getState) => {
       //subsctrition is checked using the length of the items array
       payload: data.items.length !== 0,
     });
-    console.log(data);
+    // console.log(data);
   } catch (error) {
     console.log(error.response.data);
   }

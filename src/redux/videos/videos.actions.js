@@ -45,7 +45,7 @@ export const getPopularVideos = () => async (dispatch, getState) => {
       },
     });
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     dispatch({
       type: HOME_VIDEOS_FAILURE,
       payload: error.message,

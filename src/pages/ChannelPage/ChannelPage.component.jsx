@@ -24,7 +24,7 @@ const ChannelPage = () => {
     const { snippet, statistics } = useSelector(
       (state) => state.channelDetails.channel
     );
-    console.log(statistics);
+    // console.log(statistics);
 
 
     return (
