@@ -1,3 +1,22 @@
+# React YouTube Clone
+
+#### Technologies Used
+- React Js
+- Redux
+- Firebase
+- SCSS
+- Youtube Api
+
+####ScreenShots
+
+<img src="https://i.ibb.co/xz94RzZ/1.png" alt="1" border="0">
+
+<img src="https://i.ibb.co/GJjrXDN/2.png" alt="2" border="0">
+
+<img src="https://i.ibb.co/fGSVTg3/3.png" alt="3" border="0">
+
+<hr/>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
