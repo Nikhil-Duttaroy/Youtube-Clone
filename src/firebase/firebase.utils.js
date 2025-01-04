@@ -2,12 +2,12 @@ import firebase from "firebase/app"
 import "firebase/auth"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD0tTxvbx-UhZ61t2e6gyFvCWfdZtM9C3E",
+  apiKey: process.env.REACT_APP_API_KEY,
   authDomain: "reactytclone.firebaseapp.com",
   projectId: "reactytclone",
   storageBucket: "reactytclone.appspot.com",
-  messagingSenderId: "935658967922",
-  appId: "1:935658967922:web:0a42b7608b81182fcb03eb",
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APPID_API_KEY,
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
